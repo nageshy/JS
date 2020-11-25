@@ -1,7 +1,6 @@
 function loadScript(src, callback) {
   // creates a <script> tag and append it to the page
   // this causes the script with given src to start loading and run when complete
-  console.log("I am in load script");
   let script = document.createElement("script");
   script.src = src;
   script.onload = () => callback();
@@ -43,3 +42,22 @@ var promise = loadScript1("./vendors/js/myscript1.js")
   .then((src) => {
     myscript3();
   });
+
+
+  // using async await
+  // It is just syntact sugar for promise
+
+  async function loadAllScripts() {
+    await loadScript1("./vendors/js/myscript1.js");
+    myscript1();
+
+    await loadScript1("./vendors/js/myscript2.js");
+    myscript2();
+
+    await loadScript1("./vendors/js/myscript3.js");
+    myscript3();
+  }
+
+  loadAllScripts();
+
+
